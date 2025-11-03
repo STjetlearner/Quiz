@@ -3,6 +3,8 @@ import pgzrun
 WIDTH=700
 HEIGHT=500
 
+question_index=0
+
 m=Rect(0, 0, 700, 50)
 a1=Rect(25, 375, 311.25, 100)
 a2=Rect(25, 250, 311.25, 100)
@@ -46,14 +48,24 @@ for i in fopen:
 
 print(allquestions)
 
-next_question==0
+next_question=0
 
-def read():
-    for i in allquestions:
-        print(allquestions[next_question])
-        print()
-        next_question=next_question+1
+#transferrs the questions from the text to the list
+fileopen=open("questions.txt", "r")
+allQuestions=[]
+for i in fileopen:
+    allQuestions.append(i)
+    
+#read the next questions one question at a time
+def read_next_question():
+    global next_question, question_index
+    question_index+=1
+    return allQuestions.pop(0).split(",")
+    print(allquestions[next_question])
+    print()
+    next_question=next_question+1
 
-read()
 
+question=read_next_question()
+print(question)
 pgzrun.go()
